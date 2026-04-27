@@ -1,0 +1,442 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;1,400&family=Lato:wght@300;400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--B:#00209F;--R:#D21034;--O:#C9A84C;--BS:#001570;--GC:#f4f5f8;}
+body{font-family:'Lato',sans-serif;background:#fff;}
+
+/* ── NAVBAR ── */
+.navbar{background:var(--B);height:64px;display:flex;align-items:center;padding:0 32px;gap:0;border-bottom:3px solid var(--R);position:relative;z-index:50;}
+.logo{display:flex;align-items:center;gap:10px;margin-right:32px;flex-shrink:0;}
+.logo-txt{font-family:'Montserrat',sans-serif;font-weight:900;color:#fff;font-size:13px;letter-spacing:1px;}
+.logo-sub{font-family:'Playfair Display',serif;color:var(--R);font-size:10px;}
+.nav-items{display:flex;align-items:stretch;flex:1;height:64px;}
+
+/* ── NAV ITEM ── */
+.nav-item{position:relative;display:flex;align-items:center;}
+.nav-trigger{display:flex;align-items:center;gap:5px;padding:0 14px;height:64px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;color:rgba(255,255,255,0.82);text-transform:uppercase;letter-spacing:0.5px;cursor:pointer;border:none;background:none;white-space:nowrap;border-top:3px solid transparent;transition:all 0.15s;}
+.nav-trigger:hover,.nav-trigger.open{color:#fff;border-top-color:var(--R);}
+.nav-trigger.active-page{color:var(--O);}
+.chevron{font-size:8px;opacity:0.6;transition:transform 0.2s;}
+.nav-trigger.open .chevron{transform:rotate(180deg);}
+
+/* ── CTA ── */
+.nav-cta{margin-left:auto;background:var(--R);color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;padding:10px 18px;border:none;cursor:pointer;letter-spacing:0.5px;text-transform:uppercase;flex-shrink:0;white-space:nowrap;}
+.lang{color:rgba(255,255,255,0.5);font-size:11px;margin:0 8px;flex-shrink:0;}
+
+/* ── MEGA DROPDOWN ── */
+.mega{display:none;position:absolute;top:67px;left:0;background:#fff;border-top:3px solid var(--R);min-width:520px;z-index:200;border-bottom:0.5px solid rgba(0,32,159,0.1);}
+.mega.open{display:flex;}
+.mega.narrow{min-width:220px;flex-direction:column;}
+
+/* MEGA LAYOUT */
+.mega-col{padding:20px 20px 24px;}
+.mega-col.main{background:var(--GC);min-width:200px;padding:20px;}
+.mega-col.links{flex:1;padding:20px 24px;}
+
+/* Main col */
+.mega-parent-label{font-family:'Lato',sans-serif;font-size:9px;letter-spacing:3px;color:var(--R);text-transform:uppercase;margin-bottom:8px;}
+.mega-parent-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:15px;color:var(--B);text-transform:uppercase;line-height:1.2;margin-bottom:6px;}
+.mega-parent-desc{font-size:11px;color:#666;line-height:1.6;margin-bottom:14px;}
+.mega-parent-link{display:inline-block;background:var(--B);color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;padding:7px 14px;letter-spacing:0.5px;text-transform:uppercase;cursor:pointer;}
+
+/* Links col */
+.mega-section-label{font-size:9px;letter-spacing:2px;color:var(--O);text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:700;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid rgba(201,168,76,0.3);}
+.mega-links{list-style:none;margin-bottom:16px;}
+.mega-links li{margin-bottom:2px;}
+.mega-link{display:flex;align-items:flex-start;gap:10px;padding:7px 10px;cursor:pointer;transition:background 0.15s;}
+.mega-link:hover{background:rgba(0,32,159,0.04);}
+.ml-icon{width:28px;height:28px;background:var(--B);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.ml-text{}
+.ml-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;color:var(--B);text-transform:uppercase;}
+.ml-desc{font-size:10px;color:#888;margin-top:1px;line-height:1.4;}
+
+/* narrow dropdown */
+.narrow-link{display:flex;align-items:center;gap:10px;padding:10px 20px;cursor:pointer;border-bottom:0.5px solid rgba(0,32,159,0.08);transition:background 0.15s;}
+.narrow-link:hover{background:var(--GC);}
+.nl-icon{font-size:14px;width:24px;text-align:center;flex-shrink:0;}
+.nl-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;color:var(--B);text-transform:uppercase;}
+.nl-desc{font-size:10px;color:#888;margin-top:1px;}
+
+/* ── HERO DEMO ── */
+.hero-demo{background:var(--B);min-height:240px;display:flex;align-items:center;padding:40px 32px;position:relative;overflow:hidden;}
+.hero-demo::after{content:'GRENADIERS';position:absolute;font-family:'Montserrat',sans-serif;font-weight:900;font-size:90px;color:rgba(255,255,255,0.04);right:-10px;bottom:-10px;pointer-events:none;}
+.hero-txt .ov{font-family:'Lato',sans-serif;font-size:10px;letter-spacing:3px;color:var(--O);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.hero-txt .ov::before{content:'';display:inline-block;width:20px;height:2px;background:var(--O);}
+.hero-txt h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:32px;color:#fff;text-transform:uppercase;line-height:1.05;margin-bottom:8px;}
+.hero-txt h1 span{color:var(--R);}
+.hero-txt p{font-size:13px;color:rgba(255,255,255,0.7);max-width:480px;line-height:1.7;}
+
+/* ── INFO PANEL ── */
+.info-panel{background:#fff;border-top:3px solid var(--B);}
+.info-tabs{display:flex;border-bottom:0.5px solid rgba(0,32,159,0.1);}
+.itab{padding:12px 20px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;color:#888;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s;}
+.itab.sel{color:var(--B);border-bottom-color:var(--R);}
+.info-body{padding:24px 28px;}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.info-card{padding:16px;border:0.5px solid rgba(0,32,159,0.1);}
+.ic-tag{font-size:9px;letter-spacing:2px;color:var(--R);text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:700;margin-bottom:6px;}
+.ic-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;color:var(--B);text-transform:uppercase;margin-bottom:4px;}
+.ic-items{font-size:11px;color:#555;line-height:1.8;}
+.ic-items span{display:block;padding-left:10px;position:relative;}
+.ic-items span::before{content:'›';position:absolute;left:0;color:var(--R);}
+
+.divider{height:3px;background:linear-gradient(to right,var(--B),var(--R),var(--O));}
+.note{padding:16px 28px;font-size:12px;color:#666;line-height:1.7;border-top:0.5px solid rgba(0,32,159,0.08);background:var(--GC);}
+.note strong{color:var(--B);font-family:'Montserrat',sans-serif;}
+</style>
+
+<!-- ═══════════════════════════════════ NAVBAR ═══════════════════════════════════ -->
+<div style="position:relative;z-index:50;">
+<nav class="navbar">
+  <!-- LOGO -->
+  <div class="logo">
+    <svg width="36" height="36" viewBox="0 0 38 38" fill="none"><path d="M8 4h16l10 10v16l-10 10H8L2 30V14L8 4z" fill="#00209F"/><path d="M14 18l6-8 6 8-2 8h-8l-2-8z" fill="#D21034"/></svg>
+    <div><div class="logo-txt">GRENADIERS</div><div class="logo-sub">Foundation</div></div>
+  </div>
+
+  <div class="nav-items">
+
+    <!-- ACCUEIL — no dropdown -->
+    <div class="nav-item">
+      <button class="nav-trigger active-page" onclick="closeAll()">Accueil</button>
+    </div>
+
+    <!-- ① LA FONDATION -->
+    <div class="nav-item" id="ni-fondation">
+      <button class="nav-trigger" onclick="toggle('fondation')">
+        La Fondation <span class="chevron">▼</span>
+      </button>
+      <div class="mega" id="dd-fondation">
+        <div class="mega-col main">
+          <div class="mega-parent-label">À propos</div>
+          <div class="mega-parent-title">La Grenadiers<br>Foundation</div>
+          <div class="mega-parent-desc">Un mouvement citoyen, patriotique et stratégique pour la reconstruction sociale d'Haïti.</div>
+          <div class="mega-parent-link">Voir la page →</div>
+        </div>
+        <div class="mega-col links">
+          <div class="mega-section-label">Identité & Mission</div>
+          <ul class="mega-links">
+            <li><div class="mega-link"><div class="ml-icon" style="font-size:13px;">🛡</div><div class="ml-text"><div class="ml-title">Qui sommes-nous ?</div><div class="ml-desc">Vision, Mission, Valeurs, Architecture 4M</div></div></div></li>
+            <li><div class="mega-link"><div class="ml-icon" style="font-size:13px;">📜</div><div class="ml-text"><div class="ml-title">Le Mouvement</div><div class="ml-desc">G.R.E.N.A.D.I.E.R.S, Konbitisme, Dessalinisme</div></div></div></li>
+            <li><div class="mega-link"><div class="ml-icon" style="font-size:13px;">👥</div><div class="ml-text"><div class="ml-title">Notre Équipe</div><div class="ml-desc">Membres fondateurs & Think Tank</div></div></div></li>
+            <li><div class="mega-link"><div class="ml-icon" style="font-size:13px;">📞</div><div class="ml-text"><div class="ml-title">Contact</div><div class="ml-desc">Miami · contact@grenadiersfoundation.org</div></div></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② LES GRENADIERS -->
+    <div class="nav-item" id="ni-grenadiers">
+      <button class="nav-trigger" onclick="toggle('grenadiers')">
+        Les Grenadiers <span class="chevron">▼</span>
+      </button>
+      <div class="mega" id="dd-grenadiers">
+        <div class="mega-col main">
+          <div class="mega-parent-label">Les 4 Figures</div>
+          <div class="mega-parent-title">Tous Unis<br>Derrière Eux</div>
+          <div class="mega-parent-desc">Dessalines, Depestre, la Sélection et la Technologie — quatre figures d'une même lutte.</div>
+          <div class="mega-parent-link">Voir la page →</div>
+        </div>
+        <div class="mega-col links">
+          <div class="mega-section-label">Sélection Nationale</div>
+          <ul class="mega-links">
+            <li><div class="mega-link"><div class="ml-icon" style="font-size:13px;">⚽</div><div class="ml-text"><div class="ml-title">L'Équipe nationale</div><div class="ml-desc">Joueurs, parcours, statistiques 2026</div></div></div></li>
+            <li><div class="mega-link"><div class="ml-icon" style="font-size:13px;">🏆</div><div class="ml-text"><div class="ml-title">Coupe du Monde 2026</div><div class="ml-desc">Calendrier, stades, countdown 11 juin</div></div></div></li>
+          </ul>
+          <div class="mega-section-label" style="margin-top:8px;">Les Figures Historiques</div>
+          <ul class="mega-links">
+            <li><div class="mega-link"><div class="ml-icon" style="font-size:13px;">⚔️</div><div class="ml-text"><div class="ml-title">Dessalines</div><div class="ml-desc">Le Grenadier du Sabre — 1803–1804</div></div></div></li>
+            <li><div class="mega-link"><div class="ml-icon" style="font-size:13px;">✒️</div><div class="ml-text"><div class="ml-title">René Depestre</div><div class="ml-desc">Le Grenadier de la Plume — 1946</div></div></div></li>
+            <li><div class="mega-link"><div class="ml-icon" style="font-size:13px;">💻</div><div class="ml-text"><div class="ml-title">Les Grenadiers Tech</div><div class="ml-desc">Jeunesse numérique — Aujourd'hui</div></div></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ CULTURE & MÉMOIRE -->
+    <div class="nav-item" id="ni-culture">
+      <button class="nav-trigger" onclick="toggle('culture')">
+        Culture & Mémoire <span class="chevron">▼</span>
+      </button>
+      <div class="mega" id="dd-culture">
+        <div class="mega-col main">
+          <div class="mega-parent-label">Patrimoine</div>
+          <div class="mega-parent-title">Mémoire<br>& Culture</div>
+          <div class="mega-parent-desc">Préserver, valoriser et transmettre l'identité haïtienne aux générations présentes et futures.</div>
+          <div class="mega-parent-link">Explorer →</div>
+        </div>
+        <div class="mega-col links">
+          <div class="mega-section-label">Musée & Archives</div>
+          <ul class="mega-links">
+            <li><div class="mega-link"><div class="ml-icon" style="font-size:13px;">🏛</div><div class="ml-text"><div class="ml-title">Musée des Grenadiers</div><div class="ml-desc">Vidéos, archives, chronologie historique</div></div></div></li>
+            <li><div class="mega-link"><div class="ml-icon" style="font-size:13px;">📽</div><div class="ml-text"><div class="ml-title">Bibliothèque vidéo</div><div class="ml-desc">Moments forts, interviews, animations</div></div></div></li>
+          </ul>
+          <div class="mega-section-label" style="margin-top:8px;">Hommage Depestre</div>
+          <ul class="mega-links">
+            <li><div class="mega-link"><div class="ml-icon" style="font-size:13px;">📖</div><div class="ml-text"><div class="ml-title">Tournée nationale</div><div class="ml-desc">Centenaire René Depestre — Avr.–Août 2026</div></div></div></li>
+            <li><div class="mega-link"><div class="ml-icon" style="font-size:13px;">✍️</div><div class="ml-text"><div class="ml-title">QLiD — Quiz littéraire</div><div class="ml-desc">Jeu de questions-réponses Depestre</div></div></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ AGENDA — dropdown simple -->
+    <div class="nav-item" id="ni-agenda">
+      <button class="nav-trigger" onclick="toggle('agenda')">
+        Agenda <span class="chevron">▼</span>
+      </button>
+      <div class="mega narrow" id="dd-agenda">
+        <div class="narrow-link"><span class="nl-icon">🗓</span><div><div class="nl-title">Tous les événements</div><div class="nl-desc">Agenda complet 2026</div></div></div>
+        <div class="narrow-link"><span class="nl-icon">🎭</span><div><div class="nl-title">Carnaval de Jacmel</div><div class="nl-desc">Lancement de la campagne</div></div></div>
+        <div class="narrow-link"><span class="nl-icon">📚</span><div><div class="nl-title">Tournée Depestre</div><div class="nl-desc">Avr.–Août 2026 · 6 étapes</div></div></div>
+        <div class="narrow-link"><span class="nl-icon">⚽</span><div><div class="nl-title">Matchs Grenadiers</div><div class="nl-desc">Coupe du Monde 2026</div></div></div>
+        <div class="narrow-link" style="border:none;"><span class="nl-icon">🎤</span><div><div class="nl-title">Événements diaspora</div><div class="nl-desc">Activations internationales</div></div></div>
+      </div>
+    </div>
+
+    <!-- ⑤ AGIR — dropdown simple -->
+    <div class="nav-item" id="ni-agir">
+      <button class="nav-trigger" onclick="toggle('agir')">
+        Agir <span class="chevron">▼</span>
+      </button>
+      <div class="mega narrow" id="dd-agir">
+        <div class="narrow-link"><span class="nl-icon">🪪</span><div><div class="nl-title">Carte de Supporter</div><div class="nl-desc">Obtenir ma carte officielle</div></div></div>
+        <div class="narrow-link"><span class="nl-icon">💰</span><div><div class="nl-title">Faire un Don</div><div class="nl-desc">Financer le mouvement</div></div></div>
+        <div class="narrow-link"><span class="nl-icon">🤝</span><div><div class="nl-title">Devenir Partenaire</div><div class="nl-desc">Sponsoring & partenariat</div></div></div>
+        <div class="narrow-link"><span class="nl-icon">📢</span><div><div class="nl-title">Diffuser</div><div class="nl-desc">Partager, amplifier le mouvement</div></div></div>
+        <div class="narrow-link" style="border:none;"><span class="nl-icon">🎓</span><div><div class="nl-title">Nos Programmes</div><div class="nl-desc">Sport, coding, échecs, médias…</div></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <span class="lang">FR | EN</span>
+  <button class="nav-cta">Obtenir ma Carte</button>
+</nav>
+
+<!-- ── DROPDOWN PANELS (en flux normal sous la navbar) ── -->
+<div id="dd-fondation-panel" style="display:none;">
+  <div class="mega open" style="position:static;top:auto;min-width:100%;">
+    <div class="mega-col main" style="min-width:200px;">
+      <div class="mega-parent-label">À propos</div>
+      <div class="mega-parent-title">La Grenadiers Foundation</div>
+      <div class="mega-parent-desc">Un mouvement citoyen, patriotique et stratégique pour la reconstruction sociale d'Haïti.</div>
+      <div class="mega-parent-link">Voir la page →</div>
+    </div>
+    <div class="mega-col links">
+      <div class="mega-section-label">Identité & Mission</div>
+      <ul class="mega-links">
+        <li><div class="mega-link"><div class="ml-icon" style="font-size:13px;">🛡</div><div class="ml-text"><div class="ml-title">Qui sommes-nous ?</div><div class="ml-desc">Vision, Mission, Valeurs, Architecture 4M</div></div></div></li>
+        <li><div class="mega-link"><div class="ml-icon" style="font-size:13px;">📜</div><div class="ml-text"><div class="ml-title">Le Mouvement</div><div class="ml-desc">G.R.E.N.A.D.I.E.R.S, Konbitisme, Dessalinisme</div></div></div></li>
+        <li><div class="mega-link"><div class="ml-icon" style="font-size:13px;">👥</div><div class="ml-text"><div class="ml-title">Notre Équipe</div><div class="ml-desc">Membres fondateurs & Think Tank</div></div></div></li>
+        <li><div class="mega-link"><div class="ml-icon" style="font-size:13px;">📞</div><div class="ml-text"><div class="ml-title">Contact</div><div class="ml-desc">Miami · contact@grenadiersfoundation.org</div></div></div></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── HERO DEMO ── -->
+<div class="divider"></div>
+<div class="hero-demo">
+  <div class="hero-txt">
+    <div class="ov">Grenadiers Foundation — Mouvement National</div>
+    <h1>Tous Unis Derrière<br>les <span>Grenadiers</span></h1>
+    <p>Survolez les éléments du menu pour voir les sous-menus s'afficher. Cliquez sur un item du menu pour l'ouvrir.</p>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ── INFO PANEL ── -->
+<div class="info-panel">
+  <div class="info-tabs">
+    <div class="itab sel" onclick="switchTab('structure',this)">Architecture du menu</div>
+    <div class="itab" onclick="switchTab('logique',this)">Logique de regroupement</div>
+    <div class="itab" onclick="switchTab('mobile',this)">Version mobile</div>
+  </div>
+
+  <div class="info-body" id="tab-structure">
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-tag">Menu principal</div>
+        <div class="ic-title">La Fondation</div>
+        <div class="ic-items">
+          <span>Qui sommes-nous ?</span>
+          <span>Le Mouvement</span>
+          <span>Notre Équipe</span>
+          <span>Contact</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="ic-tag">Menu principal</div>
+        <div class="ic-title">Les Grenadiers</div>
+        <div class="ic-items">
+          <span>L'Équipe nationale</span>
+          <span>Coupe du Monde 2026</span>
+          <span>Dessalines</span>
+          <span>René Depestre</span>
+          <span>Grenadiers Tech</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="ic-tag">Menu principal</div>
+        <div class="ic-title">Culture & Mémoire</div>
+        <div class="ic-items">
+          <span>Musée des Grenadiers</span>
+          <span>Bibliothèque vidéo</span>
+          <span>Tournée Depestre</span>
+          <span>QLiD — Quiz littéraire</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="ic-tag">Menu principal</div>
+        <div class="ic-title">Agenda</div>
+        <div class="ic-items">
+          <span>Tous les événements</span>
+          <span>Carnaval de Jacmel</span>
+          <span>Tournée Depestre</span>
+          <span>Matchs Grenadiers</span>
+          <span>Événements diaspora</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="ic-tag">Menu principal</div>
+        <div class="ic-title">Agir</div>
+        <div class="ic-items">
+          <span>Carte de Supporter</span>
+          <span>Faire un Don</span>
+          <span>Devenir Partenaire</span>
+          <span>Diffuser</span>
+          <span>Nos Programmes</span>
+        </div>
+      </div>
+      <div class="info-card" style="background:var(--B);">
+        <div class="ic-tag" style="color:var(--O);">CTA Permanent</div>
+        <div class="ic-title" style="color:#fff;">Obtenir ma Carte</div>
+        <div class="ic-items" style="color:rgba(255,255,255,0.7);">
+          <span>Toujours visible</span>
+          <span>Bouton rouge à droite</span>
+          <span>Action principale</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-body" id="tab-logique" style="display:none;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div>
+        <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:var(--B);text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--R);">Avant — 8 items à plat</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="padding:7px 12px;background:var(--GC);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;color:#888;">Accueil</div>
+          <div style="padding:7px 12px;background:var(--GC);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;color:#888;">Le Mouvement</div>
+          <div style="padding:7px 12px;background:var(--GC);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;color:#888;">L'Équipe</div>
+          <div style="padding:7px 12px;background:var(--GC);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;color:#888;">Événements</div>
+          <div style="padding:7px 12px;background:var(--GC);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;color:#888;">Musée</div>
+          <div style="padding:7px 12px;background:var(--GC);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;color:#888;">Agir</div>
+          <div style="padding:7px 12px;background:var(--GC);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;color:#888;">Qui sommes-nous ?</div>
+          <div style="padding:7px 12px;background:var(--GC);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;color:#888;">Contact</div>
+          <div style="padding:10px;margin-top:4px;background:rgba(210,16,52,0.08);font-size:11px;color:var(--R);font-family:'Montserrat',sans-serif;font-weight:700;">✗ Trop long — déborde sur petits écrans</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:var(--B);text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--O);">Après — 5 items + CTA</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="padding:7px 12px;background:rgba(0,32,159,0.06);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;color:var(--B);">Accueil</div>
+          <div style="padding:7px 12px;background:rgba(0,32,159,0.06);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;color:var(--B);">La Fondation ▼ <span style="font-size:9px;color:#888;font-weight:400;">(Qui sommes-nous + Mouvement + Équipe + Contact)</span></div>
+          <div style="padding:7px 12px;background:rgba(0,32,159,0.06);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;color:var(--B);">Les Grenadiers ▼ <span style="font-size:9px;color:#888;font-weight:400;">(Équipe + CdM 2026 + 4 Figures)</span></div>
+          <div style="padding:7px 12px;background:rgba(0,32,159,0.06);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;color:var(--B);">Culture & Mémoire ▼ <span style="font-size:9px;color:#888;font-weight:400;">(Musée + Depestre + Quiz)</span></div>
+          <div style="padding:7px 12px;background:rgba(0,32,159,0.06);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;color:var(--B);">Agenda ▼ <span style="font-size:9px;color:#888;font-weight:400;">(Événements + Matchs + Tournée)</span></div>
+          <div style="padding:7px 12px;background:rgba(0,32,159,0.06);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;color:var(--B);">Agir ▼ <span style="font-size:9px;color:#888;font-weight:400;">(Supporter + Don + Partenaire + Programmes)</span></div>
+          <div style="padding:7px 12px;background:var(--R);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:700;color:#fff;">Obtenir ma Carte →</div>
+          <div style="padding:10px;margin-top:4px;background:rgba(0,32,159,0.06);font-size:11px;color:var(--B);font-family:'Montserrat',sans-serif;font-weight:700;">✓ Compact — lisible — hiérarchisé</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-body" id="tab-mobile" style="display:none;">
+    <div style="display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:start;">
+      <div style="background:#0d0d2b;padding:0;overflow:hidden;">
+        <div style="background:var(--B);padding:12px 14px;border-bottom:2px solid var(--R);display:flex;align-items:center;gap:8px;">
+          <div style="font-family:'Montserrat',sans-serif;font-weight:900;font-size:12px;color:#fff;">GRENADIERS</div>
+          <div style="margin-left:auto;width:20px;height:14px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;"><div style="height:2px;background:#fff;"></div><div style="height:2px;background:#fff;"></div><div style="height:2px;background:#fff;"></div></div>
+        </div>
+        <div style="padding:8px 0;">
+          <div style="padding:10px 16px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;color:rgba(255,255,255,0.9);text-transform:uppercase;border-bottom:0.5px solid rgba(255,255,255,0.06);">Accueil</div>
+          <div style="padding:10px 16px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;color:rgba(255,255,255,0.9);text-transform:uppercase;border-bottom:0.5px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;">La Fondation <span style="color:var(--O);">+</span></div>
+          <div style="background:rgba(255,255,255,0.04);padding:0;">
+            <div style="padding:8px 16px 8px 28px;font-size:10px;color:rgba(255,255,255,0.6);border-bottom:0.5px solid rgba(255,255,255,0.04);">Qui sommes-nous ?</div>
+            <div style="padding:8px 16px 8px 28px;font-size:10px;color:rgba(255,255,255,0.6);border-bottom:0.5px solid rgba(255,255,255,0.04);">Le Mouvement</div>
+            <div style="padding:8px 16px 8px 28px;font-size:10px;color:rgba(255,255,255,0.6);">Notre Équipe</div>
+          </div>
+          <div style="padding:10px 16px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;color:rgba(255,255,255,0.9);text-transform:uppercase;border-bottom:0.5px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;">Les Grenadiers <span style="color:var(--O);">+</span></div>
+          <div style="padding:10px 16px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;color:rgba(255,255,255,0.9);text-transform:uppercase;border-bottom:0.5px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;">Culture & Mémoire <span style="color:var(--O);">+</span></div>
+          <div style="padding:10px 16px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;color:rgba(255,255,255,0.9);text-transform:uppercase;border-bottom:0.5px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;">Agenda <span style="color:var(--O);">+</span></div>
+          <div style="padding:10px 16px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;color:rgba(255,255,255,0.9);text-transform:uppercase;">Agir <span style="color:var(--O);">+</span></div>
+        </div>
+        <div style="padding:12px 14px;background:var(--R);">
+          <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;color:#fff;text-align:center;text-transform:uppercase;">Obtenir ma Carte →</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:var(--B);text-transform:uppercase;margin-bottom:12px;">Comportement mobile</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:12px;border:0.5px solid rgba(0,32,159,0.12);">
+            <div style="width:24px;height:24px;background:var(--B);display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;flex-shrink:0;">☰</div>
+            <div><div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;color:var(--B);">Burger menu sur mobile</div><div style="font-size:11px;color:#666;margin-top:3px;">La navbar se réduit à logo + burger. Le menu coulisse depuis la gauche (drawer).</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:12px;border:0.5px solid rgba(0,32,159,0.12);">
+            <div style="width:24px;height:24px;background:var(--O);display:flex;align-items:center;justify-content:center;font-size:11px;color:#000;flex-shrink:0;">+</div>
+            <div><div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;color:var(--B);">Accordéon pour les sous-menus</div><div style="font-size:11px;color:#666;margin-top:3px;">Chaque item parent s'ouvre/ferme avec le signe +/− pour révéler les sous-pages.</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:12px;border:0.5px solid rgba(0,32,159,0.12);">
+            <div style="width:24px;height:24px;background:var(--R);display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;flex-shrink:0;">→</div>
+            <div><div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;color:var(--B);">CTA toujours visible en bas du drawer</div><div style="font-size:11px;color:#666;margin-top:3px;">"Obtenir ma Carte" reste ancré en bas du menu mobile pour maximiser la conversion.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="note">
+  <strong>3 types de dropdown utilisés :</strong> (1) <strong>Mega-menu</strong> avec colonne éditoriale à gauche pour "La Fondation" et "Les Grenadiers" — pages riches en contenu. (2) <strong>Dropdown simple</strong> avec icônes pour "Agenda" et "Agir" — actions rapides. (3) <strong>Accueil</strong> sans dropdown — page unique directe. Le CTA "Obtenir ma Carte" reste toujours visible à droite, séparé du menu.
+</div>
+
+<script>
+let openId = null;
+function toggle(id){
+  const dd = document.getElementById('dd-'+id);
+  const trigger = document.querySelector('#ni-'+id+' .nav-trigger');
+  if(openId && openId !== id){
+    const prev = document.getElementById('dd-'+openId);
+    const prevT = document.querySelector('#ni-'+openId+' .nav-trigger');
+    if(prev){prev.style.display='none';prev.classList.remove('open');}
+    if(prevT){prevT.classList.remove('open');}
+  }
+  if(dd.style.display==='flex'||dd.classList.contains('open')){
+    dd.style.display='none';dd.classList.remove('open');trigger.classList.remove('open');openId=null;
+  } else {
+    dd.style.display=dd.classList.contains('narrow')?'flex':'flex';
+    dd.classList.add('open');trigger.classList.add('open');openId=id;
+  }
+}
+function closeAll(){
+  ['fondation','grenadiers','culture','agenda','agir'].forEach(id=>{
+    const dd=document.getElementById('dd-'+id);
+    const t=document.querySelector('#ni-'+id+' .nav-trigger');
+    if(dd){dd.style.display='none';dd.classList.remove('open');}
+    if(t){t.classList.remove('open');}
+  });openId=null;
+}
+function switchTab(id,el){
+  document.querySelectorAll('.info-body').forEach(t=>t.style.display='none');
+  document.querySelectorAll('.itab').forEach(t=>t.classList.remove('sel'));
+  document.getElementById('tab-'+id).style.display='block';
+  el.classList.add('sel');
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-item')&&!e.target.closest('.mega')){closeAll();}
+});
+</script>
